@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CRC64.browser.toys</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A web-based zip file creator and editor">
+  <style type="text/css">
+  body {
+    margin:20px;
+    font-size:12px;
+    background-color:#111;
+    color:#ff7;
+    font-family: 'Monaco', 'Consolas', monospace;
+  }
+  a, a:visited {
+    color:#ff7;
+  }
+  a:hover {
+    color:#ff9;
+  }
+  #title {
+    font-size:12px;
+    font-weight:normal;
+  }
+  .text-region {
+    margin-bottom:20px;
+  }
+  textarea {
+    background-color:#060606;
+    padding:5px;
+    margin-top:5px;
+    box-sizing: border-box;
+    color:#ff7;
+    border:1px solid #cc6;
+    resize:none;
+    width:500px;
+    height:200px;
+    border-radius:7px;
+  }
+  textarea:active {
+    border:1px solid #ffc;
+  }
+  </style>
+</head>
+<body>
+  <h1 id="title">
+    CRC64 CONVERTER<br />
+    Generates CRC64 (ECMA) hashes.<br />
+    Local and private - nothing is sent to the server<br /> <br />
+  </h1>
+  <div class="text-region">
+    source text:<br />
+    <textarea id="source"></textarea>
+  </div>
+  <div class="text-region">crc64: <span id="crc64-ecma"></span></div>
+</body>
+<script type="text/javascript" src="crc64ecma.js"></script>
+<script type="text/javascript">
+function sourceChanged(e) {
+  document.getElementById('crc64-ecma').innerText = crc64ecma(text_source.value);
+}
+
+var text_source = document.getElementById('source');
+text_source.addEventListener('change', sourceChanged);
+text_source.addEventListener('keyup', sourceChanged);
+text_source.addEventListener('paste', sourceChanged);
+</script>
+</html>
